@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus-Campcoin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <!-- INSCRIPCIÓN DE CAMPERS  -- READY -->
+    <div class="container">
+        <h2 class="mt-5 mb-5">SISTEMA DE GESTIÓN DE CAMPCOINS CAMPUSLAND</h2>
+        <div class="mb-5">
+
+            <div class="row">
+                <div class="form-group col-md-4 mb-3">
+                    <label for="identificacion">ID</label>
+                    <input required type="text" 
+                    name="identificacion" 
+                    class="form-control" 
+                    id="identificacion"
+                    placeholder="Ingrese el ID">
+                </div>
+                
+                <div class="form-group col-md-4 mb-3">
+                    <label for="name">Nombre completo</label>
+                    <input required type="text" 
+                    name="name" 
+                    class="form-control" 
+                    id="name"
+                    placeholder="Ingrese el Nombre completo">
+                </div>
+
+                <div class="form-group col-md-4 mb-3">
+                    <label for="telefono">Teléfono</label>
+                    <input required type="text" 
+                    name="telefono" 
+                    class="form-control" 
+                    id="telefono"
+                    placeholder="Ingrese el Teléfono">
+                </div>
+
+                <div class="form-group col-md-4 mb-3">
+                    <label for="email">Correo</label>
+                    <input required type="email" 
+                    name="email" 
+                    class="form-control" 
+                    id="email"
+                    placeholder="Ingrese el Correo">
+                </div>
+
+                <div class="form-group col-md-4 mb-3">
+                    <label for="grupo">Grupo</label>
+                    <select class="form-control" id="grupo">
+                        <option value="">Escoger</option>
+                        <option value="pedro">P1</option>
+                        <option value="miguel">M2</option>
+                        <option value="roy">R3</option>
+                        <option value="carlos">C4</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4 mb-3">
+                    <label for="points" >Campcoins</label>
+                    <input required type="number" 
+                    name="points" 
+                    class="form-control" 
+                    value="0"
+                    id="points"
+                    placeholder="Ingrese los Campcoins">
+                    
+                </div>
+
+                <div class="d-flex justify-content-sm-evenly">
+                    <button class="btn btn-success" id="Submit" onclick="AddData()" >Agregar información</button>
+                    <button class="btn btn-primary"  id="Update" onclick="UpdateData()">Actualizar información</button>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2>REPORTE DE CAMPERS</h2>
+                <table class="table table-bordered" id="crudTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>CAMPER</th>
+                            <th>PUNTOS</th>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+        
+        <!-- INSCRIPCIÓN DE CONCEPTOS + o - -->
+        <div>
+            <h2 class="mt-5 mb-5">GESTIÓN DE CAMPCOINS</h2>
+            <div class="mb-5">
+
+                <h5>SUMAR CAMPCOINS</h5>
+                <div class="row">
+                    <div class="form-group col-md-3 mb-3">
+                        <label for="buscar_identificacion">ID del Camper</label>
+                        <input required type="number" 
+                        name="buscar_identificacion" 
+                        class="form-control" 
+                        id="buscar_identificacion"
+                        placeholder="Ingrese el ID del Camper">
+                    </div>
+
+                    <div class="form-group col-md-9 mb-3">
+                        <label for="sumar_puntos">Ingrese el concepto por el cual aumenta la cantidad de Campcoins</label>
+                        <select class="form-control" id="sumar_puntos">
+                            <option value="">-- Escoger --</option>
+                            <option value="buenas_notas">Buenas notas ( +5 )</option>
+                            <option value="companerismo">Tener un buen compañerismo ( +2 )</option>
+                        </select>
+                </div>
+
+                    <div>                    
+                        <button class="btn btn-info mb-2" id="sumar" onclick="SumarCampcoins()" >Sumar campcoin</button>
+                    </div>
+
+                <h5>RESTAR CAMPCOINS</h5>
+                <div class="row">
+                    <div class="form-group col-md-3 mb-3">
+                        <label for="buscar_miidentificacion">ID del Camper</label>
+                        <input required type="number" 
+                        name="buscar_miidentificacion" 
+                        class="form-control" 
+                        id="buscar_miidentificacion"
+                        placeholder="Ingrese el ID del Camper">
+                    </div>
+
+                    <div class="form-group col-md-9 mb-3">
+                            <label for="restar_puntos">Ingrese el concepto por el cual disminuye la cantidad de Campcoins</label>
+                            <select class="form-control" id="restar_puntos">
+                                <option value="">-- Escoger --</option>
+                                <option value="tarde">Llegar tarde ( -3 ) </option>
+                                <option value="groserias">Decir groserias (-10) </option>
+                            </select>
+                    </div>
+
+                    <div>                    
+                        <button class="btn btn-danger mb-2" id="restar" onclick="RestarCampcoins()" >Restar campcoin</button>
+                    </div>
+
+            
+            <!-- Trigger/Open The Modal -->
+            <button id="myBtn" class="btn-success"> MODIFICAR GESTIÓN</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div> 
+                        <div class="row">
+                            <div class="form-group col-md-3 mb-3">
+                                <label for="">VALOR</label>
+                                <input required type="number" 
+                                class="form-control" 
+                                placeholder="INGRESE EL VALOR">
+                            </div>
+        
+                            <div class="form-group col-md-9 mb-3">
+                                <label for="">CONCEPTO</label>
+                                <input required type="text" 
+                                name="" 
+                                class="form-control" 
+                                id=""
+                                placeholder="INGRESE EL CONCEPTO">
+                            </div>
+        
+                            <div>                    
+                                <button class="btn btn-success mb-2"  >Ingrese el concepto</button>
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            </div>
+        <hr>
+
+                    <hr class="mt-5">
+
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <h2>REPORTE DE CAMPCOINS</h2>
+                            <table class="table table-bordered" id="puntosTABLE">
+                                <thead>
+                                    <tr>
+                                        <th WIDTH="100">ID</th>
+                                        <th>CAMPER</th>
+                                        <th>PUNTOS</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <SCript src="modal.js"></SCript>
+    <script src="campcoin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
